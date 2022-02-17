@@ -12,11 +12,12 @@ class Commentaire extends Model
 
     protected $fillable = [
         'title',
-        'content', 
+        'content',
+        'article_id' 
     ];
 
 
     public function articles(){
-        return $this->hasMany(Article::class);
+        return $this->belongsTo(Article::class);
     }
 }

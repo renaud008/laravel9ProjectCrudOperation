@@ -13,13 +13,17 @@ class Article extends Model
     protected $fillable = [
         'title',
         'subtitle',
-        'content',
-        'commentaire_id'
-    ];
-
-    public function commentaire(){
+        'content'
         
-        return $this->belongsTo(Commentaire::class);
+    ];
+    public function comments()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
+    public function commentaires(){
+        
+        return $this->hasMany(Commentaire::class);
+       
         
     }
 

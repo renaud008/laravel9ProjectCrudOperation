@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Faker\Factory;
+use App\Models\Article;
 use App\Models\Commentaire;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,8 +24,8 @@ class CommentaireSeeder extends Seeder
 
             Commentaire::create([
                 'title'=>$faker->sentence(), 
-                'content'=>$faker->text($maxNbChars=80)
-                
+                'content'=>$faker->text($maxNbChars=80),
+                'article_id'=> Article::inRandomOrder()->first()->id
                 
             ]);
     }

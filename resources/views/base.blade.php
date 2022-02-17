@@ -1,3 +1,5 @@
+ 
+ 
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,11 +15,38 @@
     <title>nn</title>
   </head>
   <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">LARAVEL9</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('articles')}}">Home</a>
+              </li>
+              
+            </ul>
+
+            @if (Auth::guest())
+                <form method="get" action="/login" class="d-flex" >
+                   @csrf
+                    <button type="submit" class="btn btn-outline-info" type="submit">SE CONNECTER</button>
+                </form>
+            @else
+                <form  method="post" action="{{route('logout')}}" class="d-flex">
+                    @csrf
+                    <button type="submit"  class="btn btn-outline-info" type="submit">SE DECONNECTER</button>
+                </form>
+            @endif
+          
+          </div>
+        </div>
+      </nav>
+      
     @yield('content')
    
-     
       
-
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 @section('content')
 
- 
+ {{-- @dump($articles ) --}}
     <div class="container-fluid">
         <h1 class="display-3 text-center text-danger " >Articles</h1>
        
@@ -11,7 +11,7 @@
         </div>
        
         <div class="artilces row px-4 my-5 justify-content-center">
-            
+              
             @foreach ($articles as $article)
                
 
@@ -20,6 +20,7 @@
                       <h5 class="card-title">{{$article->title}}</h5>
                       <h6 class="card-subtitle mb-2 text-muted">{{$article->subtitle}}</h6>
                       <p class="card-text">{{$article->content}}</p>
+ 
                      </div>
                     <div class="card-footer d-flex justify-content-center">
                          {{-- <a href="{{route('article.edit',$article->id)}}" class="card-link  text-decoration-none">Modifier</a>
@@ -29,13 +30,31 @@
                             
                             <button TYPE="submit" class="btn btn-card-link text-primary ">Modifier</a>
                            </form>
-                         <form action="{{route('article.delete',$article->id)}}"  method="POST">
-                           @csrf
-                           @Method("DELETE")
-                           <button TYPE="submit" class="btn btn-card-link text-danger ">Supprimer</a>
-                          </form>
+                           <form action="{{route('article.delete',$article->id)}}"  method="POST">
+                            @csrf
+                            @Method("DELETE")
+                            <button TYPE="submit" class="btn btn-card-link text-danger ">Supprimer</a>
+                           </form>
+                           
+                           <form action="{{route('commentaire.create',$article)}}"  method="POST">
+                            @csrf
+                           
+                            <button TYPE="submit" class="btn btn-card-link text-danger ">Commenter</a>
+                           </form>
+                      </div>
+
+                      <div class="card-footer d-flex justify-content-center">
+                          
+                        @foreach ($article->comments as $comment)
+                        <ul>
+                            <li> {{$comment->id}} </li>
+                        </ul>
+                            
+                        @endforeach
                       </div>
                   </div>
+
+                  
             @endforeach
         </div>
        

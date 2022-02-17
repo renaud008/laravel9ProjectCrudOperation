@@ -14,8 +14,9 @@ class ArticleController extends Controller
      */
     public function index()
     {  
-        $articles = Article::All(); 
-       
+        
+         $articles = Article::All(); 
+    
         return  view('articles',[
             'articles' => $articles
         ]);
@@ -43,7 +44,7 @@ class ArticleController extends Controller
             'title'=> $request->input('title'),
             'subtitle'=> $request->input('subtitle'),
             'content'=> $request->input('content'),
-            'commentaire_id'=> $request->input('commentaire_id') 
+            
         ]);
 
         return redirect()->route('articles');
@@ -104,6 +105,25 @@ class ArticleController extends Controller
     public function delete($id)
     {
         $article =  Article::where('id', $id)->firstOrFail(); 
+       
+        $comments = $article->comments;
+
+        if (count($comments)   == 1) {
+           
+             $comments[0]->delete();
+ 
+        } elseif (count($comments)   > 1) {
+           
+            foreach ($comments as $comment){ 
+            
+                $comment->delete();
+              } 
+
+        } else {
+            
+        }
+
+        
         $article->delete();
         return redirect()->route('articles');
 

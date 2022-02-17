@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return  redirect()->route('articles');
 });
  
 Route::get('/commentaire',function () { return view('commentaire');});
@@ -29,5 +30,16 @@ Route::controller(ArticleController::class)->group(function(){
     Route::put('/articles/{id}/update','update')->name('article.update');
     Route::delete('/articles/{id}/delete','delete')->name('article.delete'); 
  });
+
+ Route::controller(CommentaireController::class)->group(function(){
+   
+    Route::Post('/commentaire/{Article}/create', 'create')->name('commentaire.create');
+    Route::Post('/commentaire/store', 'store')->name('commentaire.store');
+     
+ });
+
  
  
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

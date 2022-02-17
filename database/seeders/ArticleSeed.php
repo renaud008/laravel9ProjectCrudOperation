@@ -27,7 +27,7 @@ class ArticleSeed extends Seeder
                 'title'=>$faker->sentence(),
                 'subtitle'=>$faker->sentence(),
                 'content'=>$faker->text($maxNbChars=150),
-                'commentaire_id'=> Commentaire::inRandomOrder()->first()->id
+                // 'commentaire_id'=> Commentaire::inRandomOrder()->first()->id
                 
             ]);
          }

@@ -13,7 +13,7 @@
               
              <div class="form-control my-5">
                <label for="title">Titre : </label>
-               <input type="text" class="form-control"   name="title" id="title" required>
+               <input type="text" class="form-control"     name="title" id="title" required>
              
              </div>
 
@@ -30,12 +30,7 @@
                 
               </div> 
               
-              <div class="form-control my-5">
-                <label for="content">commentaire_id: </label>
-                <input type="aria-text" class="form-control"   name="commentaire_id" id="content" required>
-                
-              </div>
-
+            
 
               <button type="submit" class="btn btn-primary">Submit</button>
            </form>
