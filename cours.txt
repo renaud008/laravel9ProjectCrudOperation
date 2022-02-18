@@ -1,0 +1,27 @@
+https://www.youtube.com/watch?v=J2eNMdlyqqY great tuto for softdeleter
+
+ use SoftDeletes;
+
+  public function up()
+    {
+        Schema::table('commentaires', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('commentaires', function (Blueprint $table) {
+            $table->dropSoftDeletes(); 
+        });
+    }
+ 
+
+    //to find delete model you must 
+
+    $project = \App\Models\Project::withTrashed()->findOrFail(2);

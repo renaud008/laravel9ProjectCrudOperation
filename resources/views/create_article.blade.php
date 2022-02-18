@@ -14,20 +14,29 @@
              <div class="form-control my-5">
                <label for="title">Titre : </label>
                <input type="text" class="form-control"     name="title" id="title" required>
-             
+              
+               @error('title')
+               <div class="text-danger"> {{$message}}</div>
+                @enderror
              </div>
 
 
              <div class="form-control my-5">
                 <label for="subtitle">subtitle: </label>
                 <input type="text" class="form-control"   name="subtitle" id="subtitle" required>
-                
+              
+                @error('subtitle')
+                <div class="text-danger"> {{$message}}</div>
+                 @enderror
               </div>  
               
               <div class="form-control my-5">
                 <label for="content">content: </label>
                 <input type="aria-text" class="form-control"   name="content" id="content" required>
-                
+               
+                @error('content')
+                <div class="text-danger"> {{$message}}</div>
+                 @enderror
               </div> 
               
             

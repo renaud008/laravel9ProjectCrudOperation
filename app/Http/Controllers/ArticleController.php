@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -38,8 +39,11 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
+
+        $validatedData = $request->validated();
+
         Article::create([
             'title'=> $request->input('title'),
             'subtitle'=> $request->input('subtitle'),
@@ -84,8 +88,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
+        $validatedData = $request->validated();
+       
+
         $article =  Article::where('id', $id)->firstOrFail(); 
         
         $article->title= $request->input('title');

@@ -16,14 +16,13 @@ use App\Http\Controllers\CommentaireController;
 */
 
 Route::get('/', function () {
-    return  redirect()->route('articles');
+    return  view('articles');
 });
- 
-Route::get('/commentaire',function () { return view('commentaire');});
- 
-Route::controller(ArticleController::class)->group(function(){
+  
+
+Route::controller(ArticleController::class)->middleware('auth')->group(function(){
     Route::get('/articles','index')->name('articles'); 
-    Route::get('/articles/create', 'create')->name('article.create');
+    Route::get('/articles/create', 'create')->name('article.create') ;
     Route::post('/articles/store', 'store')->name('article.store');
     Route::get('/articles/{id}/edit', 'edit')->name('article.edit');
     Route::get('/articles/{id}', 'show')->name('article.show');
@@ -31,11 +30,12 @@ Route::controller(ArticleController::class)->group(function(){
     Route::delete('/articles/{id}/delete','delete')->name('article.delete'); 
  });
 
- Route::controller(CommentaireController::class)->group(function(){
-   
+
+ Route::controller(CommentaireController::class)->middleware('auth')->group(function(){ 
+
     Route::Post('/commentaire/{Article}/create', 'create')->name('commentaire.create');
-    Route::Post('/commentaire/store', 'store')->name('commentaire.store');
-     
+    Route::Post('/commentaire/store', 'store')->name('commentaire.store'); 
+
  });
 
  

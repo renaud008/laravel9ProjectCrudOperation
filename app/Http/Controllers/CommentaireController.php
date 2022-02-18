@@ -39,6 +39,8 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
+          
+
         Commentaire::create([
             'title'=>$request->input('title'),
             'content'=>$request->input('content'),
